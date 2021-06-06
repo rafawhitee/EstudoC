@@ -7,7 +7,8 @@ struct list {
 };
 
 // Protótipo
-void read(struct list *first);
+void readWithoutRecursion(struct list *first);
+void readWithRecursion(struct list *first);
 
 int main(){	 
     // Declara as variáveis
@@ -25,12 +26,28 @@ int main(){
 	m3.next = 0; // NULL
 	
 	// Chama o método para ler
-	read(hook);
+	printf("Chamando readWithoutRecursion \n");
+	readWithoutRecursion(hook);
+	
+	printf("Chamando readWithRecursion \n");
+	readWithRecursion(hook);
 	return 0;
 }
 
+void readWithoutRecursion(struct list *current) {
+	while(true){
+		printf("Valor Atual: %i \n", current->value);
+		if(current->next){
+			current = current->next;
+		} else {
+			break;
+		}
+	}
+	printf("End of List \n");
+}
+
 // Lê a lista, com recursividade
-void read(struct list *first) {
+void readWithRecursion(struct list *first) {
 	// Se o ponteiro não for nulo
 	if(first){
 		// Imprime o valor
@@ -38,10 +55,10 @@ void read(struct list *first) {
 		// Se existir um próximo
 		if(first->next){
 			// Chama o mesmo método, passando o ponteiro do Next...
-			read(first->next);
+			readWithRecursion(first->next);
 		} else {
 			// Se for nulo, é porque é o último da lista...
-			printf("End of List...");
+			printf("End of List \n");
 		}
 	}
 }
