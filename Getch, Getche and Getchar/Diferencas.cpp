@@ -22,4 +22,5 @@ int main(){
 	printf("\n --------------------- \n");
 	printf("Getchar: %c \n", c);
 	
+	return 0;
 }
